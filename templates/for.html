@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Template of if else</title>
+</head>
+<body>
+<p>For 循环</p>
+<hr>
+{# dict #}
+{% if user %}
+    {% for k,v in user.items() %}
+        <p>
+            {{ k }} : {{ v }}
+        </p>
+    {% endfor %}
+{% endif %}
+{# list #}
+{% for website in websites %}
+    <p>{{ website }}</p>
+{% endfor %}
+
+{#books table#}
+<table>
+    <thead>
+    <th>书名</th>
+    <th>作者</th>
+    <th>价格</th>
+    </thead>
+    <tbody>
+    {% for book in books %}
+        <tr>
+            <td>{{ book.name }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.price }}</td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+</body>
+</html>

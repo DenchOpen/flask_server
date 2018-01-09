@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Template of if else</title>
+</head>
+<body>
+<p>If else 判断条件测试</p>
+<hr>
+<p>
+    {% if user and user.age > 20 %}
+        <a href="#">{{ user.username }}</a>
+        <a href="#">注销</a>
+    {% else %}
+        <a href="#">登录</a>
+        <a href="#">注册</a>
+    {% endif %}
+</p>
+</body>
+</html>
