@@ -76,5 +76,42 @@ def for_test():
     return render_template('for.html', user=user, websites=websites, books=books)
 
 
+@app.route('/filter')
+def image_filter():
+    img_url = 'http://avatar.csdn.net/1/5/0/3_kwu_ganymede.jpg'
+    comments = [
+        {
+            'user': '韩梅梅',
+            'content': '我是评论内容',
+        },
+        {
+            'user': '李磊',
+            'content': '我是评论内容',
+        }
+    ]
+    return render_template('filter.html', img_url=img_url, comments=comments)
+
+
+#
+# class Person(object):
+#     name = ''
+#     age = 18
+#
+#
+# class Student(Person):
+#     def get_person(self):
+#         return self
+
+
+@app.route('/page2')
+def extends_template2():
+    return render_template('page2.html')
+
+
+@app.route('/page1')
+def extends_template1():
+    return render_template('page1.html')
+
+
 if __name__ == '__main__':
     app.run()

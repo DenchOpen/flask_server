@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Template of filter</title>
+</head>
+<body>
+<p>过滤器</p>
+<hr>
+{# default filter #}
+<img src="{{ img_url01|default('http://avatar.csdn.net/9/9/9/3_glt_code.jpg') }}" , alt="">
+
+{# length filter #}
+<p>评论数：({{ comments|length }})</p>
+{% for comment in comments %}
+    <p>
+        <a href="#">{{ comment.user }}</a> : {{ comment.content }}
+    </p>
+{% endfor %}
+</body>
+</html>
