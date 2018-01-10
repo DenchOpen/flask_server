@@ -1,7 +1,7 @@
 # encoding: utf-8
 __author__ = 'Dench'
 
-from db_helper import db
+from app import db
 
 
 # 用户表
