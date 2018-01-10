@@ -1,7 +1,8 @@
 # encoding: utf-8
-__author__ = 'Dench'
 
-from app import db
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
 
 
 # 用户表

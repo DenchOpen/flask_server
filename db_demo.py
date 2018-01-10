@@ -1,5 +1,3 @@
-__author__ = 'Dench'
-
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
