@@ -1,11 +1,12 @@
+#encoding: utf-8
 """
 flask script command tool manage
 """
-
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 from app import app
 from models import db
+from models import User
 
 manage = Manager(app)
 
