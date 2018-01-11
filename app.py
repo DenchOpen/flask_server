@@ -1,7 +1,7 @@
 """
 Main 入口
 """
-from flask import Flask
+from flask import Flask, render_template
 from models import db
 import models
 import config
@@ -18,7 +18,7 @@ with app.app_context():
 
 @app.route('/')
 def index():
-    return 'hello world'
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
