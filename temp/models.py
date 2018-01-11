@@ -15,3 +15,15 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User %r>' % self.username
+
+
+# 创建所有数据库表
+def create_database():
+    db.create_all()
+    print("database is created.")
+
+
+# 删除所有数据库表
+def drop_database():
+    db.drop_all()
+    print('database is dropped.')
