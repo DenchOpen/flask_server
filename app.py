@@ -2,9 +2,9 @@
 Main 入口
 """
 from flask import Flask, render_template, redirect, url_for, request, session
-from models import db
-from models import User
-import models
+from decorators import login_required
+from models import db, User, Question
+from datetime import datetime
 import config
 
 app = Flask(__name__)
@@ -19,7 +19,6 @@ with app.app_context():
 
 @app.route('/')
 def index():
-    print('index refresh')
     return render_template('index.html')
 
 
@@ -58,6 +57,22 @@ def register():
             db.session.add(user)
             db.session.commit()
             return redirect(url_for('login'))
+
+
+@app.route('/question/', methods=['GET', 'POST'])
+@login_required
+def question():
+    if request.method == 'GET':
+        return render_template('question.html')
+    else:
+        title = request.form.get('title')
+        content = request.form.get('content')
+        author_id = session.get('user_id')
+        question1 = Question(title=title, content=content, author_id=author_id,
+                             create_time=datetime.now().timestamp())
+        db.session.add(question1)
+        db.session.commit()
+        return redirect(url_for('index'))
 
 
 if __name__ == '__main__':
