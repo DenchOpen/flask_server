@@ -77,5 +77,11 @@ def question():
         return redirect(url_for('index'))
 
 
+@app.route('/detail/<question_id>')
+def detail(question_id):
+    question_ = Question.query.filter(Question.question_id == question_id).first()
+    return render_template('detail.html', question=question_)
+
+
 if __name__ == '__main__':
     app.run()

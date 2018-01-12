@@ -15,7 +15,7 @@ class User(db.Model):
     password = db.Column(db.String(100), nullable=False)
 
     def __repr__(self):
-        return '<User %r>' % self.username
+        return '<User %r>' % self.user_name
 
 
 # 问答
@@ -28,6 +28,7 @@ class Question(db.Model):
     create_time = db.Column(db.Integer, nullable=False)
     author_id = db.Column(db.Integer, db.ForeignKey('user.user_id'))
 
-    # author = db.relationship('User')
+    author = db.relationship('User')
+
     def __repr__(self):
         return '<Question %r>' % self.title
