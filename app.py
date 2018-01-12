@@ -19,7 +19,9 @@ with app.app_context():
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    questions = Question.query.order_by('-create_time').all()
+    # print(questions)
+    return render_template('index.html', questions=questions)
 
 
 @app.route('/login/', methods=['GET', 'POST'])

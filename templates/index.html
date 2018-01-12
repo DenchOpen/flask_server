@@ -2,13 +2,32 @@
 
 {% block title %}首页{% endblock %}
 
+<!-- style sheet -->
 {% block head %}
-
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}">
+    {#    <link rel="script" href="{{ url_for('static', filename='js/index.js') }}">#}
+    {#    <script language="javascript" src="../js/index.js"></script>#}
 {% endblock %}
-
 
 <!-- body -->
 {% block main %}
-    这是首页
+    <ul class="question-ul">
+
+        {% for question in questions %}
+            <li>
+                <div class="avatar-group">
+                    <img src="{{ url_for('static', filename='img/google_icon.png') }}" alt="" class="avatar">
+                </div>
+                <div class="question-group">
+                    <p class="question-title"><a href="#">{{ question.title }}</a></p>
+                    <p class="question-content">{{ question.content }}</p>
+                    <div class="question-info">
+                        <span class="question-author">{{ question.author }}</span>
+                        <span class="question-time">2018-01-12 23:00</span>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}
 
