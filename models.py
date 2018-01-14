@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -17,11 +16,30 @@ class User(db.Model):
     def __repr__(self):
         return '<User %r>' % self.user_name
 
+    def to_json(self):
+        json_user = {
+            'user_id': self.user_id,
+            'user_name': self.user_name,
+            'mobile': self.mobile,
+            'password': self.password
+        }
+        return json_user
 
-# 问答
-class Question(db.Model):
-    __tablename__ = 'question'
-    question_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+        # @staticmethod
+        # def from_json(json_user):
+        #     user = User(
+        #         user_id=json_user.get('user_id'),
+        #         user_name=json_user.get('user_name'),
+        #         mobile=json_user.get('mobile'),
+        #         password=json_user.get('password')
+        #     )
+        #     return user
+
+
+# 文章
+class Article(db.Model):
+    __tablename__ = 'article'
+    article_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(100), nullable=False)
     content = db.Column(db.Text, nullable=False)
     # 默认时间直接使用timestamp()函数名
@@ -30,5 +48,16 @@ class Question(db.Model):
 
     author = db.relationship('User')
 
+    def to_json(self):
+        json_article = {
+            'article_id': self.article_id,
+            'title': self.title,
+            'content': self.content,
+            'create_time': self.create_time,
+            'author_id': self.author_id,
+            'author_name': self.author.user_name,
+        }
+        return json_article
+
     def __repr__(self):
-        return '<Question %r>' % self.title
+        return '<Article %r>' % self.title

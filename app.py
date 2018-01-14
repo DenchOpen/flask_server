@@ -1,11 +1,12 @@
 """
 Main 入口
 """
-from flask import Flask, render_template, redirect, url_for, request, session
+from flask import Flask, render_template, redirect, url_for, request, session, jsonify
 from decorators import login_required
-from models import db, User, Question
+from models import db, User, Article
 from datetime import datetime
 import config
+from sqlalchemy import and_, or_
 
 app = Flask(__name__)
 app.config.from_object(config)
@@ -19,7 +20,7 @@ with app.app_context():
 
 @app.route('/')
 def index():
-    questions = Question.query.order_by('-create_time').all()
+    questions = Article.query.order_by('-create_time').all()
     # print(questions)
     return render_template('index.html', questions=questions)
 
@@ -31,7 +32,7 @@ def login():
     else:
         mobile = request.form.get('mobile')
         password = request.form.get('password')
-        user = User.query.filter(User.mobile == mobile and User.password == password).first()
+        user = User.query.filter(User.mobile == mobile).filter(User.password == password).first()
         if user:
             session['user_id'] = user.user_id
             # 31天内不需要登录
@@ -70,8 +71,8 @@ def question():
         title = request.form.get('title')
         content = request.form.get('content')
         author_id = session.get('user_id')
-        question1 = Question(title=title, content=content, author_id=author_id,
-                             create_time=datetime.now().timestamp())
+        question1 = Article(title=title, content=content, author_id=author_id,
+                            create_time=datetime.now().timestamp())
         db.session.add(question1)
         db.session.commit()
         return redirect(url_for('index'))
@@ -79,8 +80,107 @@ def question():
 
 @app.route('/detail/<question_id>')
 def detail(question_id):
-    question_ = Question.query.filter(Question.question_id == question_id).first()
+    question_ = Article.query.filter(Article.article_id == question_id).first()
+    print(question_)
     return render_template('detail.html', question=question_)
+
+
+''' -------------------  API ------------------- '''
+
+
+# 服务成功
+def json_success_response(dict_data=None):
+    if not dict_data:
+        dict_data = {}
+    dict_data['status'] = 1
+    dict_data['message'] = '成功'
+    return jsonify(dict_data)
+
+
+# 服务失败
+def json_error_response(status=0, message='服务异常'):
+    dict_data = {
+        'status': status,
+        'message': message
+    }
+    return jsonify(dict_data)
+
+
+# ------- user api ----------
+# 用户注册
+@app.route('/user/register.action', methods=['GET', 'POST'])
+def user_register_action():
+    mobile = request.form.get('mobile')
+    username = request.form.get('username')
+    password = request.form.get('password')
+    if not mobile or not username or not password:
+        return json_error_response(status=101, message='缺少必要的参数.')
+    # 验证手机号是否存在
+    user = User.query.filter(User.mobile == mobile).first()
+    if user:
+        return json_error_response(status=102, message='该手机号已经存在')
+    else:
+        user = User(mobile=mobile, user_name=username, password=password)
+        db.session.add(user)
+        db.session.commit()
+        return json_success_response()
+
+
+# 用户登录
+@app.route('/user/login.action', methods=['GET', 'POST'])
+def user_login_action():
+    user_name = request.form.get('username')
+    password = request.form.get('password')
+    if (not user_name) or (not password):
+        return json_error_response(status=101, message='用户名或密码错误')
+    user = User.query.filter(and_(or_(User.user_name == user_name, User.mobile
+                                      == user_name), User.password == password)).first()
+    if user:
+        return json_success_response(user.to_json())
+    else:
+        return json_error_response(status=102, message='用户名或密码错误')
+
+
+# ------- article api ----------
+# 添加文章
+@app.route('/article/add.action', methods=['GET', 'POST'])
+def article_add_action():
+    title = request.form.get('title')
+    content = request.form.get('content')
+    author_id = request.form.get('author_id')
+    if (not title) or (not content) or (not author_id):
+        return json_error_response(status=101, message='缺少必要参数')
+    user = User.query.filter(User.user_id == author_id).first()
+    if not user:
+        return json_error_response(status=102, message='用户不存在')
+    article = Article(title=title, content=content, author_id=author_id,
+                      create_time=datetime.now().timestamp())
+    db.session.add(article)
+    db.session.commit()
+    return json_success_response()
+
+
+# 文章列表
+@app.route('/article/list.action', methods=['GET', 'POST'])
+def article_list_action():
+    articles = Article.query.all()
+    json_articles = {
+        'articles': [article.to_json() for article in articles]
+    }
+    return json_success_response(json_articles)
+
+
+# 文章详情
+@app.route('/article/detail.action', methods=['GET', 'POST'])
+def article_detail_action():
+    article_id = request.form.get('article_id')
+    if not article_id:
+        return json_error_response(status=101, message='数据不能为空')
+    article = Article.query.filter(Article.article_id == article_id).first()
+    if not article:
+        return json_error_response(status=102, message='文章消失了')
+    else:
+        return json_success_response(article.to_json())
 
 
 if __name__ == '__main__':
