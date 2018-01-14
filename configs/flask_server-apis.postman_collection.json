@@ -1,0 +1,296 @@
+{
+	"id": "21ff67fb-28a7-fa43-b30a-6ba30f113298",
+	"name": "flask_server:apis",
+	"description": "",
+	"order": [
+		"de490dc4-c4ef-b909-c2af-e40334eb9eed",
+		"769fdaf9-b6aa-6674-2dc6-c4063d0faccb",
+		"e5d6ba88-b43b-fb75-cd2d-84e07667e7f8",
+		"06b02406-db88-cff9-82a5-0a22081fc625",
+		"476388c5-464e-6f68-bc1d-46e4b987d4dc",
+		"ee82a5f9-f944-afe8-a85f-734d1fb21366"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1515942459690,
+	"owner": 0,
+	"public": false,
+	"events": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "cf0ef486-98aa-47f9-b302-7e0f46339614",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "ff110f81-6d86-4f85-95b3-7d31ce7b07d0",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variables": [
+		{
+			"key": "domain",
+			"value": "http://127.0.0.1:5000",
+			"description": "",
+			"type": "text",
+			"disabled": false
+		}
+	],
+	"auth": null,
+	"requests": [
+		{
+			"id": "06b02406-db88-cff9-82a5-0a22081fc625",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{domain}}/article/add.action",
+			"queryParams": [],
+			"events": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "title",
+					"value": "文章的标题",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "content",
+					"value": "文章的内容，通常可以很长的",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "author_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"auth": {
+				"type": "noauth"
+			},
+			"time": 1515943216142,
+			"name": "/article/add.action",
+			"description": "",
+			"collectionId": "21ff67fb-28a7-fa43-b30a-6ba30f113298",
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null
+		},
+		{
+			"id": "476388c5-464e-6f68-bc1d-46e4b987d4dc",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{domain}}/article/list.action",
+			"queryParams": [],
+			"events": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"auth": {
+				"type": "noauth"
+			},
+			"time": 1515943230677,
+			"name": "/article/list.action",
+			"description": "",
+			"collectionId": "21ff67fb-28a7-fa43-b30a-6ba30f113298",
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null
+		},
+		{
+			"id": "769fdaf9-b6aa-6674-2dc6-c4063d0faccb",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{domain}}/user/login.action",
+			"queryParams": [],
+			"events": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "username",
+					"value": "18888888888",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "111111",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"auth": {
+				"type": "noauth"
+			},
+			"time": 1515943238545,
+			"name": "/user/login.action",
+			"description": "",
+			"collectionId": "21ff67fb-28a7-fa43-b30a-6ba30f113298",
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null
+		},
+		{
+			"id": "de490dc4-c4ef-b909-c2af-e40334eb9eed",
+			"headers": "",
+			"headerData": [],
+			"url": "{{domain}}",
+			"queryParams": [],
+			"events": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"auth": null,
+			"time": 1515943087389,
+			"name": "index",
+			"description": "",
+			"collectionId": "21ff67fb-28a7-fa43-b30a-6ba30f113298",
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null
+		},
+		{
+			"id": "e5d6ba88-b43b-fb75-cd2d-84e07667e7f8",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{domain}}/user/register.action",
+			"queryParams": [],
+			"events": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "mobile",
+					"value": "18988889997",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "username",
+					"value": "Simon",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "111111",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"auth": {
+				"type": "noauth"
+			},
+			"time": 1515943199689,
+			"name": "/user/register.action",
+			"description": "",
+			"collectionId": "21ff67fb-28a7-fa43-b30a-6ba30f113298",
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null
+		},
+		{
+			"id": "ee82a5f9-f944-afe8-a85f-734d1fb21366",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{domain}}/article/detail.action",
+			"queryParams": [],
+			"events": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "article_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"auth": {
+				"type": "noauth"
+			},
+			"time": 1515943257702,
+			"name": "/article/detail.action",
+			"description": "",
+			"collectionId": "21ff67fb-28a7-fa43-b30a-6ba30f113298",
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null
+		}
+	]
+}

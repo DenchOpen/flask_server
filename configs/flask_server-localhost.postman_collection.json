@@ -1,0 +1,267 @@
+{
+	"id": "0cec53b9-d9e7-3084-57ba-c5312bfc4b21",
+	"name": "flask_server:localhost",
+	"description": "",
+	"order": [
+		"eaa84295-6092-e6b4-8942-b026a7b96d2f",
+		"b1a4c34b-8cd5-048b-bd7c-2d8bee12f34c",
+		"5acf1cb9-5f54-df0a-64c8-49419707b135",
+		"98c9bff0-2a73-ff9c-8cfe-8dbb3c9ebca6",
+		"0fcc5092-8aba-7328-4036-ab5c28241a46",
+		"4b73fb40-809c-2b63-0d2d-d81be3d0f9bc"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1515914389993,
+	"owner": 0,
+	"public": false,
+	"events": [],
+	"variables": [],
+	"auth": null,
+	"requests": [
+		{
+			"id": "0fcc5092-8aba-7328-4036-ab5c28241a46",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://127.0.0.1:5000/article/list.action",
+			"queryParams": [],
+			"events": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"auth": {
+				"type": "noauth"
+			},
+			"time": 1515941584445,
+			"name": "/article/list.action",
+			"description": "",
+			"collectionId": "0cec53b9-d9e7-3084-57ba-c5312bfc4b21",
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null
+		},
+		{
+			"id": "4b73fb40-809c-2b63-0d2d-d81be3d0f9bc",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://127.0.0.1:5000/article/detail.action",
+			"queryParams": [],
+			"events": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "article_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"auth": {
+				"type": "noauth"
+			},
+			"time": 1515941666045,
+			"name": "/article/detail.action",
+			"description": "",
+			"collectionId": "0cec53b9-d9e7-3084-57ba-c5312bfc4b21",
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null
+		},
+		{
+			"id": "5acf1cb9-5f54-df0a-64c8-49419707b135",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://127.0.0.1:5000/user/register.action",
+			"queryParams": [],
+			"events": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "mobile",
+					"value": "18988889997",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "username",
+					"value": "Simon",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "111111",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"auth": {
+				"type": "noauth"
+			},
+			"time": 1515941225944,
+			"name": "/user/register.action",
+			"description": "",
+			"collectionId": "0cec53b9-d9e7-3084-57ba-c5312bfc4b21",
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null
+		},
+		{
+			"id": "98c9bff0-2a73-ff9c-8cfe-8dbb3c9ebca6",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://127.0.0.1:5000/article/add.action",
+			"queryParams": [],
+			"events": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "title",
+					"value": "文章的标题",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "content",
+					"value": "文章的内容，通常可以很长的",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "author_id",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"auth": {
+				"type": "noauth"
+			},
+			"time": 1515941496263,
+			"name": "/article/add.action",
+			"description": "",
+			"collectionId": "0cec53b9-d9e7-3084-57ba-c5312bfc4b21",
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null
+		},
+		{
+			"id": "b1a4c34b-8cd5-048b-bd7c-2d8bee12f34c",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://127.0.0.1:5000/user/login.action",
+			"queryParams": [],
+			"events": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "username",
+					"value": "18888888888",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "111111",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"auth": {
+				"type": "noauth"
+			},
+			"time": 1515938518371,
+			"name": "/user/login.action",
+			"description": "",
+			"collectionId": "0cec53b9-d9e7-3084-57ba-c5312bfc4b21",
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null
+		},
+		{
+			"id": "eaa84295-6092-e6b4-8942-b026a7b96d2f",
+			"headers": "",
+			"headerData": [],
+			"url": "localhost:5000/",
+			"queryParams": [],
+			"events": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"auth": null,
+			"time": 1515916612093,
+			"name": "localhost:5000 index",
+			"description": "",
+			"collectionId": "0cec53b9-d9e7-3084-57ba-c5312bfc4b21",
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null
+		}
+	]
+}
