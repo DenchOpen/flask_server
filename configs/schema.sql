@@ -9,6 +9,8 @@ USE zhifoudb;
 GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP ON zhifoudb.* TO 'dench'@'localhost'
 IDENTIFIED BY '123456';
 
+GRANT ALL PRIVILEGES ON *.* TO 'dench'@'localhost' IDENTIFIED BY '123456';
+
 CREATE TABLE users (
   `id`         VARCHAR(50)  NOT NULL,
   `email`      VARCHAR(50)  NOT NULL,
