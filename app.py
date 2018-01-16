@@ -199,5 +199,19 @@ def article_detail_action():
         return json_success_response(article.to_json())
 
 
+# 文章删除
+@app.route('/article/delete.action', methods=['GET', 'POST'])
+def article_delete_action():
+    values = request.json
+    if not values:
+        values = request.form
+    article_id = values.get('article_id')
+    if not article_id:
+        return json_error_response(status=101, message='数据不能为空')
+    Article.query.filter(Article.article_id == article_id).delete()
+    db.session.commit()
+    return json_success_response()
+
+
 if __name__ == '__main__':
     app.run()
