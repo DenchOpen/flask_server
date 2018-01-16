@@ -113,9 +113,12 @@ def json_error_response(status=0, message='服务异常'):
 # 用户注册
 @app.route('/user/register.action', methods=['GET', 'POST'])
 def user_register_action():
-    mobile = request.json.get('mobile')
-    username = request.json.get('username')
-    password = request.json.get('password')
+    values = request.json
+    if not values:
+        values = request.form
+    mobile = values.get('mobile')
+    username = values.get('username')
+    password = values.get('password')
     if not mobile or not username or not password:
         return json_error_response(status=101, message='缺少必要的参数.')
     # 验证手机号是否存在
@@ -132,14 +135,18 @@ def user_register_action():
 # 用户登录
 @app.route('/user/login.action', methods=['GET', 'POST'])
 def user_login_action():
-    user_name = request.json.get('username')
-    password = request.json.get('password')
+    values = request.json
+    if not values:
+        values = request.form
+    user_name = values.get('username')
+    password = values.get('password')
     if (not user_name) or (not password):
         return json_error_response(status=101, message='用户名或密码错误')
     user = User.query.filter(and_(or_(User.user_name == user_name, User.mobile
                                       == user_name), User.password == password)).first()
     if user:
         return json_success_response(user.to_json())
+
     else:
         return json_error_response(status=102, message='用户名或密码错误')
 
@@ -148,9 +155,12 @@ def user_login_action():
 # 添加文章
 @app.route('/article/add.action', methods=['GET', 'POST'])
 def article_add_action():
-    title = request.json.get('title')
-    content = request.json.get('content')
-    author_id = request.json.get('author_id')
+    values = request.json
+    if not values:
+        values = request.form
+    title = values.get('title')
+    content = values.get('content')
+    author_id = values.get('author_id')
     if (not title) or (not content) or (not author_id):
         return json_error_response(status=101, message='缺少必要参数')
     user = User.query.filter(User.user_id == author_id).first()
@@ -176,7 +186,10 @@ def article_list_action():
 # 文章详情
 @app.route('/article/detail.action', methods=['GET', 'POST'])
 def article_detail_action():
-    article_id = request.json.get('article_id')
+    values = request.json
+    if not values:
+        values = request.form
+    article_id = values.get('article_id')
     if not article_id:
         return json_error_response(status=101, message='数据不能为空')
     article = Article.query.filter(Article.article_id == article_id).first()
