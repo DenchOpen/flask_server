@@ -89,13 +89,10 @@ def detail(question_id):
 
 
 ''' -------------------  API ------------------- '''
-# headers = [('Content-Type', 'application/json;charset=UTF-8'),
-#            ('Connection', 'keep-alive'),
-#            ('Version-Code', '1')]
 headers = {
-    'Content-Type': "application/json;charset=UTF-8",
-    'Connection': "keep-alive",
-    'Version-Code': "1"
+    'Content-Type': 'application/json;charset=UTF-8',
+    'Connection': 'keep-alive',
+    'Version-Code': 1
 }
 
 
