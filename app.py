@@ -89,6 +89,14 @@ def detail(question_id):
 
 
 ''' -------------------  API ------------------- '''
+# headers = [('Content-Type', 'application/json;charset=UTF-8'),
+#            ('Connection', 'keep-alive'),
+#            ('Version-Code', '1')]
+headers = {
+    'Content-Type': "application/json;charset=UTF-8",
+    'Connection': "keep-alive",
+    'Version-Code': "1"
+}
 
 
 # 服务成功
@@ -97,7 +105,10 @@ def json_success_response(dict_data=None):
         dict_data = {}
     dict_data['status'] = 1
     dict_data['message'] = '成功'
-    return jsonify(dict_data)
+
+    rst = jsonify(dict_data)
+    rst.headers = headers
+    return rst
 
 
 # 服务失败
@@ -106,7 +117,9 @@ def json_error_response(status=0, message='服务异常'):
         'status': status,
         'message': message
     }
-    return jsonify(dict_data)
+    rst = jsonify(dict_data)
+    rst.headers = headers
+    return rst
 
 
 # ------- user api ----------
