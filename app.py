@@ -186,7 +186,7 @@ def article_add_action():
 # 文章列表
 @app.route('/article/list.action', methods=['GET', 'POST'])
 def article_list_action():
-    articles = Article.query.all()
+    articles = Article.query.order_by(Article.create_time.desc()).all()
     json_articles = {
         'articles': [article.to_json() for article in articles]
     }
